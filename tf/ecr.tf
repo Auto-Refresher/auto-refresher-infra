@@ -1,15 +1,5 @@
-resource "aws_ecr_repository" "browser" {
-    name = "refref-browser-repository"
-    image_tag_mutability = "MUTABLE"
-}
-
-resource "aws_ecr_repository" "controller" {
-    name = "refref-controller-repository"
-    image_tag_mutability = "MUTABLE"
-}
-
-resource "aws_ecr_lifecycle_policy" "main" {
-  repository = "aws_ecr_repository.browser.name"
+resource "aws_ecr_lifecycle_policy" "browser" {
+  repository = "data.aws_ecr_repository.browser_repo.name"
  
   policy = jsonencode({
     rules = [{
@@ -27,8 +17,8 @@ resource "aws_ecr_lifecycle_policy" "main" {
   })
 }
 
-resource "aws_ecr_lifecycle_policy" "main" {
-  repository = "aws_ecr_repository.controller.name"
+resource "aws_ecr_lifecycle_policy" "controller" {
+  repository = "data.aws_ecr_repository.controller_repo.name"
  
   policy = jsonencode({
     rules = [{

@@ -3,12 +3,13 @@ resource "aws_ecs_cluster" "refref_cluster" {
 }
 
 resource "aws_ecs_task_definition" "refresher_controller" {
+    family                   = "refresher-controller-task"
     network_mode             = "awsvpc"
     requires_compatibilities = ["FARGATE"]
     cpu                      = 512
     memory                   = 1024
     execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
-    task_role_arn            = aws_iam_role.ecs_task_role.arn
+    task_role_arn            = aws_iam_role.ecs_task_execution_role.arn
     container_definitions = jsonencode([{
         name        = "refresher-controller-container"
         image       = "${var.refresher_controller_container_image}:latest"
@@ -43,7 +44,7 @@ resource "aws_ecs_service" "controller_service" {
         container_name = "controller"
     }
 
-    depends_on = [ aws_ecs_cluster.main, aws_alb_listener.controller, aws_iam_role_policy_attachment.ecs_task_execution_role, aws_security_group.controller_sg ]
+    depends_on = [ aws_ecs_cluster.refref_cluster, aws_iam_role_policy_attachment.ecs_task_execution_role, aws_security_group.controller_sg ]
 }
 
 resource "aws_ecs_task_definition" "refresher_browser" {
@@ -53,7 +54,7 @@ resource "aws_ecs_task_definition" "refresher_browser" {
     cpu                      = 1024
     memory                   = 2048
     execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
-    task_role_arn            = aws_iam_role.ecs_task_role.arn
+    task_role_arn            = aws_iam_role.ecs_task_execution_role.arn
     container_definitions = jsonencode([{
         name        = "refresher-browser-container"
         image       = "${var.refresher_browser_container_image}:latest"
@@ -98,5 +99,5 @@ resource "aws_ecs_service" "browser_service" {
         container_port   = var.browser_port
     }
 
-    depends_on = [ aws_ecs_cluster.main, aws_alb_listener.browser, aws_iam_role_policy_attachment.ecs_task_execution_role, aws_security_group.browser_sg ]
+    depends_on = [ aws_ecs_cluster.refref_cluster, aws_alb_listener.browser, aws_iam_role_policy_attachment.ecs_task_execution_role, aws_security_group.browser_sg ]
 }

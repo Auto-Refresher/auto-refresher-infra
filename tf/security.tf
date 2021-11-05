@@ -7,14 +7,14 @@ resource "aws_security_group" "lb_sg" {
         protocol = "tcp"
         from_port = 0
         to_port = var.browser_port
-        cidr_block = ["0.0.0.0/0"]
+        cidr_blocks = ["0.0.0.0/0"]
     }
 
     egress {
         protocol = "-1"
         from_port = 0
         to_port = 0
-        cidr_block = ["0.0.0.0/0"]
+        cidr_blocks = ["0.0.0.0/0"]
     }
 
 }

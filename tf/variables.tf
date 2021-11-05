@@ -7,7 +7,7 @@ variable "refresher_browser_container_image" {
 }
 
 variable "browser_port" {
-    default = "4444"
+    default = 4444
 }
 
 variable "az_count" {
