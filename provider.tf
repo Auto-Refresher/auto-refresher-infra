@@ -7,3 +7,7 @@ terraform {
     }
   }
 }
+
+provider "aws" {
+  alias = "eu-west-2"
+}
