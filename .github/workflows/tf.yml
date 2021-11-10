@@ -24,6 +24,10 @@ jobs:
         id: export-aws-prof
         run: export AWS_PROFILE=ref_user
         
+      - name: Find and check creds failure
+        id: find-creds
+        run: echo ~/.aws/credentials && cat ~/.aws/credentials
+
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
         with:
