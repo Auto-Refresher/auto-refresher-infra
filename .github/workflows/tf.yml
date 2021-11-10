@@ -26,7 +26,7 @@ jobs:
         
       - name: Find and check creds failure
         id: find-creds
-        run: echo ~/.aws/credentials && cat ~/.aws/credentials
+        run: aws configure list
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
