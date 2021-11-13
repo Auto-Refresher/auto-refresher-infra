@@ -9,3 +9,8 @@ data "aws_ecr_repository" "controller_repo" {
 data "aws_ecr_repository" "browser_repo" {
     name = "refresher-browser"
 }
+
+data "aws_alb_target_group" "browser_tg" {
+    name = "refresher-browser-target-group"
+    arn = var.browser_tg_arn
+}
