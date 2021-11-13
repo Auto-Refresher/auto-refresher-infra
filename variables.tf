@@ -3,7 +3,7 @@ variable "refresher_controller_container_image" {
 }
 
 variable "refresher_browser_container_image" {
-    default = "selenium-standalone/chrome"
+    default = "docker.io/selenium-standalone/chrome"
 }
 
 variable "browser_port" {
