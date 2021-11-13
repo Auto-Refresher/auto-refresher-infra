@@ -41,7 +41,7 @@ resource "aws_ecs_service" "controller_service" {
 
     service_registries {
         registry_arn = aws_service_discovery_service.refresher-stack-controller.arn
-        container_name = "controller"
+        container_name = "refresher_controller"
     }
 
     depends_on = [ aws_ecs_cluster.refref_cluster, aws_iam_role_policy_attachment.ecs_task_execution_role, aws_security_group.controller_sg ]
@@ -90,12 +90,12 @@ resource "aws_ecs_service" "browser_service" {
 
     service_registries {
         registry_arn = aws_service_discovery_service.refresher-stack-browser.arn
-        container_name = "browser"
+        container_name = "refresher_browser"
     }
 
     load_balancer {
         target_group_arn = aws_alb_target_group.browser_tg.id
-        container_name   = "browser"
+        container_name   = "refresher_browser"
         container_port   = var.browser_port
     }
 
