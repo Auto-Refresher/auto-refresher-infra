@@ -94,7 +94,7 @@ resource "aws_ecs_service" "browser_service" {
     }
 
     load_balancer {
-        target_group_arn = aws_alb_target_group.browser_tg.id
+        target_group_arn = var.browser_tg_arn
         container_name   = "refresher_browser"
         container_port   = var.browser_port
     }

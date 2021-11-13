@@ -16,5 +16,5 @@ variable "az_count" {
 }
 
 variable "browser_tg_arn" {
-    defualt = "arn:aws:elasticloadbalancing:eu-west-2:818224701131:targetgroup/refresher-browser-target-group/1be5c3adaca1e1c0"
+    default = "arn:aws:elasticloadbalancing:eu-west-2:818224701131:targetgroup/refresher-browser-target-group/1be5c3adaca1e1c0"
 }
