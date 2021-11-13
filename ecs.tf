@@ -30,7 +30,7 @@ resource "aws_ecs_service" "controller_service" {
     name            = "refresher-controller-service"
     cluster         = aws_ecs_cluster.refref_cluster.id
     task_definition = aws_ecs_task_definition.refresher_controller.arn
-    desired_count   = 1
+    desired_count   = 0
     launch_type     = "FARGATE"
 
     network_configuration {
@@ -79,7 +79,7 @@ resource "aws_ecs_service" "browser_service" {
     name            = "refresher-browser-service"
     cluster         = aws_ecs_cluster.refref_cluster.id
     task_definition = aws_ecs_task_definition.refresher_browser.arn
-    desired_count   = 1
+    desired_count   = 0
     launch_type     = "FARGATE"
 
     network_configuration {
