@@ -1,1 +1,1 @@
-# auto-refresher-infra
+# auto-refresher-infra ![workflow](https://github.com/Auto-Refresher/auto-refresher-infra/actions/workflows/tf.yml/badge.svg)
