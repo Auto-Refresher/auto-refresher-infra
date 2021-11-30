@@ -8,11 +8,11 @@ name: Build tf
 jobs: 
   terrascan:
     name: Terrascan
-    run-on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-        
+
       - name: Scan
         id: terrascan
         uses: accurics/terrascan-action@main
