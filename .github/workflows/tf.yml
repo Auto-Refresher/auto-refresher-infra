@@ -10,6 +10,7 @@ jobs:
     name: Terrascan
     runs-on: ubuntu-latest
     steps:
+    
       - name: Checkout repository
         uses: actions/checkout@v2
 
@@ -21,11 +22,18 @@ jobs:
           iac_version: 'v14'
           policy_type: 'aws'
           only_warn: true
-  
+          sarif_upload: true
+
+      - name: Upload SARIF
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: terrascan.sarif  
+
   terraform:
     name: Terraform
     runs-on: ubuntu-latest
     steps:
+
       - name: Checkout
         uses: actions/checkout@v2
     
